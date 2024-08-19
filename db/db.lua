@@ -1505,14 +1505,14 @@ PermoksAccountManager.quests = {
         [60214] = {questType = 'daily', name = "Doomwalker"}, -- Doomwalker
     },
     big_dig = {
-        [79226] = {questType = 'weekly', warbandReward = true, log = true},
+        [79226] = {questType = 'weekly', warband = true, log = true},
     },
 
     -- 11.0 PREPATCH
     radiant_echoes_prepatch_weeklies = {
-        [82689] = {questType = 'daily', warbandReward = true, log = true, name = "Dragonblight (Lich King)"}, --name = 'Only Darkness'},
-        [82676] = {questType = 'daily', warbandReward = true, log = true, name = "Dustwallow Marsh (Onyxia)"}, --name = 'Broken Masquerade'},
-        [78938] = {questType = 'daily', warbandReward = true, log = true, name = "Searing Gorge (Ragnaros)"}, --name = 'Champion of the Waterlords'},
+        [82689] = {questType = 'daily', warband = true, log = true, name = "Dragonblight (Lich King)"}, --name = 'Only Darkness'},
+        [82676] = {questType = 'daily', warband = true, log = true, name = "Dustwallow Marsh (Onyxia)"}, --name = 'Broken Masquerade'},
+        [78938] = {questType = 'daily', warband = true, log = true, name = "Searing Gorge (Ragnaros)"}, --name = 'Champion of the Waterlords'},
     },
     radiant_echoes_cache = {
         [84083] = {questType = 'weekly'}
