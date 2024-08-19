@@ -1151,18 +1151,39 @@ local labelRows = {
 		group = 'resetDaily',
 		version = WOW_PROJECT_MAINLINE
 	},
+	big_dig = {
+		IDs = {79226},
+		label = 'The Big Dig',
+		type = 'quest',
+		questType = 'weekly',
+		warbandReward = true,
+		visibility = 'visible',
+		group = 'resetWeekly',
+		version = WOW_PROJECT_MAINLINE
+	},
+
 	-- 11.0 PREPATCH
 	radiant_echoes_prepatch_weeklies = {
 		IDs = {78938,82676,82689},
-		label = 'Radiant Echoes Weeklies',
+		label = 'Radiant Echoes Dailies',
 		type = 'quest',
-		questType = 'weekly',
+		questType = 'daily',
+		warbandReward = 'unique',
 		visibility = 'visible',
 		tooltip = true,
 		customTooltip = function(...)
 			PermoksAccountManager:CompletedQuestsTooltip_OnEnter(...)
 		end,
 		required = 3,
+		group = 'resetDaily',
+		version = WOW_PROJECT_MAINLINE
+	},
+	radiant_echoes_cache = {
+		IDs = {84083},
+		label = 'Prepatch Weekly Cache',
+		type = 'quest',
+		questType = 'weekly',
+		visibility = 'hidden',
 		group = 'resetWeekly',
 		version = WOW_PROJECT_MAINLINE
 	},
@@ -1352,7 +1373,7 @@ end
 
 local function UpdateAllQuests(charInfo)
 	local self = PermoksAccountManager
-	charInfo.questInfo = charInfo.questInfo or default
+	charInfo.questInfo = charInfo.questInfo or CopyTable(default)
 
 	local covenant = self.isRetail and (charInfo.covenant or C_Covenants.GetActiveCovenantID())
 	local questInfo = charInfo.questInfo
@@ -1389,7 +1410,7 @@ end
 
 local function UpdateAllQuestsNew(charInfo)
 	local self = PermoksAccountManager
-	charInfo.questInfo = charInfo.questInfo or default
+	charInfo.questInfo = charInfo.questInfo or CopyTable(default)
 
 	local covenant = self.isRetail and (charInfo.covenant or C_Covenants.GetActiveCovenantID())
 	local questInfo = charInfo.questInfo
@@ -1403,6 +1424,11 @@ local function UpdateAllQuestsNew(charInfo)
 			questInfo[questType][visibility][key] = questInfo[questType][visibility][key] or {}
 			local currentQuestInfo = questInfo[questType][visibility][key]
 			local isComplete = C_QuestLog.IsQuestFlaggedCompleted(questID)
+
+			--debug line delete later
+			if isComplete then
+				print(questID .. ' completed: ' .. tostring(isComplete))
+			end
 
 			if not self.isBC then
 				if info.covenant and covenant == info.covenant then
